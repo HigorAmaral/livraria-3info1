@@ -1,9 +1,8 @@
-
 from rest_framework.serializers import ModelSerializer
-from core.models import Categoria
+from core.models import Autor
 
-class CategoriaSerializer(ModelSerializer):
+class AutorSerializer(ModelSerializer):
     class Meta:
-        model = Categoria
+        model = Autor
         fields = "__all__"
         read_only_fields = ['id']
