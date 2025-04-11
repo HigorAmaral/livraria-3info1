@@ -3,6 +3,8 @@
 import os
 import sys
 
+os.environ["MYSQLCLIENT_CFLAGS"] = "-I/usr/include/mysql"
+os.environ["MYSQLCLIENT_LDFLAGS"] = "-L/usr/lib/mysql -lmysqlclient"
 
 def main():
     """Run administrative tasks."""
