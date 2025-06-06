@@ -71,10 +71,10 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Editora)
 class EditoraAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'cidade')
-    search_fields = ('nome', 'cidade')
-    list_filter = ('nome', 'cidade')
-    ordering = ('nome', 'cidade')
+    list_display = ('nome', 'email', 'cidade')
+    search_fields = ('nome', 'email', 'cidade')
+    list_filter = ('nome', 'email', 'cidade')
+    ordering = ('nome', 'email', 'cidade')
     list_per_page = 10
 
 @admin.register(Livro)
