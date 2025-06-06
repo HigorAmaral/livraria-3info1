@@ -2,11 +2,13 @@
 Django admin customization.
 """
 
+from typing import ClassVar
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
 from core import models
+from core.models import Autor, Categoria, Editora, Livro, User
 
 
 class UserAdmin(BaseUserAdmin):
@@ -51,8 +53,35 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
-admin.site.register(models.User, UserAdmin)
-admin.site.register(models.Categoria)
-admin.site.register(models.Editora)
-admin.site.register(models.Autor)
-admin.site.register(models.Livro)
+@admin.register(Autor)
+class AutorAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'email')
+    search_fields = ('nome', 'email')
+    list_filter = ('nome',)
+    ordering = ('nome', 'email')
+    list_per_page = 10
+
+@admin.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ('descricao',)
+    search_fields = ('descricao',)
+    list_filter = ('descricao',)
+    ordering = ('descricao',)
+    list_per_page = 10
+
+@admin.register(Editora)
+class EditoraAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'cidade')
+    search_fields = ('nome', 'cidade')
+    list_filter = ('nome', 'cidade')
+    ordering = ('nome', 'cidade')
+    list_per_page = 10
+
+@admin.register(Livro)
+class LivroAdmin(admin.ModelAdmin):
+    list_display = ('titulo',)
+    search_fields = ('titulo',)
+    list_filter = ()
+    ordering = ('titulo',)
+    list_per_page = 25
+
