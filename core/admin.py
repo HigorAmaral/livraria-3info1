@@ -1,7 +1,3 @@
-"""
-Django admin customization.
-"""
-
 from typing import ClassVar
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -12,13 +8,13 @@ from core.models import Autor, Categoria, Editora, Livro, User
 
 
 class UserAdmin(BaseUserAdmin):
-    """Define the admin pages for users."""
-
     ordering = ['id']
-    list_display = ['email', 'name']
+    list_display = ['email', 'name', 'is_staff', 'foto']  
+    search_fields = ['email', 'name']
+    list_per_page = 10
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name', 'passage_id')}),
+        (_('Personal Info'), {'fields': ('name', 'passage_id', 'foto')}), 
         (
             _('Permissions'),
             {
@@ -52,7 +48,6 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
 
-
 @admin.register(Autor)
 class AutorAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email')
@@ -84,4 +79,6 @@ class LivroAdmin(admin.ModelAdmin):
     list_filter = ()
     ordering = ('titulo',)
     list_per_page = 25
+
+admin.site.register(User, UserAdmin)
 
